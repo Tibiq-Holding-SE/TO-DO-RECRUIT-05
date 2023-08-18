@@ -1,0 +1,31 @@
+﻿@using System.Globalization;
+@using TaskManagerLite.Entities;
+@using TaskManagerLite.Entities.Tasks;
+@model DeleteTaskRequest;
+
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="yesNoDialogLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="yesNoDialogLabel">Confirmation</h5>
+                <button type="button" class="close" onclick="Close()" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this task?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="Close()" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="DeleteTask(this)" id="@Model.Id">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Close()
+    {
+        $('#deleteTaskModal').modal('hide');
+    }
+</script>
