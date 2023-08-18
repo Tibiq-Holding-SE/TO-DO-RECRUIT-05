@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "./wwwroot/js",
+    "rootDir": "./wwwroot/ts",
+    "strict": true
+  },
+  "include": [
+    "./wwwroot/ts/**/*.ts"
+  ]
+}

@@ -1,0 +1,45 @@
+﻿@model TaskManagerLite.Entities.CompositeViewModel
+
+<body onload="Submit()">
+    <div class="container">
+        <div class="row" id="tasks-list-container">
+        </div>
+
+        <div class="container">
+                <button href="#" class="btn-primary task-button" onclick="OpenCreateDialog()" id="openCreateTaskModal">Add New Task</button>
+        </div>
+    </div>
+
+    <div id="dialogContainer"></div>
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function OpenCreateDialog()
+    {
+        $.get('@Url.Action("create-task", "Tasks")', function (data) {
+            $('#dialogContainer').html(data);
+            $('#createTaskModal').modal('show');
+        });
+    }
+
+    function OpenEditDialog(placeholder)
+    {
+        var editUrl = '@Url.Action("edit-task", "Tasks")' + '?id=' + encodeURIComponent(placeholder.id);
+
+        $.get(editUrl, function (data) {
+            $('#dialogContainer').html(data);
+            $('#editTaskModal').modal('show');
+        });
+    }
+
+    function OpenDeleteDialog(placeholder) 
+    {
+        var deleteUrl = '@Url.Action("delete-task", "Tasks")' + '?id=' + encodeURIComponent(placeholder.id);
+
+        $.get(deleteUrl, function (data) {
+            $('#dialogContainer').html(data);
+            $('#deleteTaskModal').modal('show');
+        });
+    }
+</script>

@@ -1,0 +1,42 @@
+﻿@using System.Globalization
+@using TaskManagerLite.Entities.Tasks
+@model GetTask;
+
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                <button type="button" onclick="Close()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input value="@Model.Name" id="nameInput" asp-for="Name" placeholder="Name" />
+                <input value="@Model.Description" id="descInput" asp-for="Description" placeholder="Description" />
+
+                @if(Model.DueDate != null)
+                {
+                    <input value="@Model.DueDate!.Value.ToString("yyyy-MM-ddTHH:mm")" id="duedateInput" asp-for="DueDate" />
+                }
+                else
+                {
+                    <input id="duedateInput" asp-for="DueDate" />
+                }
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="Close()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="EditTask(this)" id="@Model.Id" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Close()
+    {
+        $('#editTaskModal').modal('hide');
+    }
+</script>
